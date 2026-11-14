@@ -117,6 +117,45 @@
             <jvmarg line="${run.jvmargs}"/>
         </java>
     </target>
+    <target depends="init" description="Compile a single file." name="compile-single">
+        <fail unless="javac.includes">Must select a file in the IDE or set javac.includes</fail>
+        <mkdir dir="${build.classes.dir}"/>
+        <javac debug="true" deprecation="${javac.deprecation}" destdir="${build.classes.dir}" encoding="${source.encoding}" includeantruntime="false" source="${javac.source}" sourcepath="${src.dir}" srcdir="${src.dir}" target="${javac.target}">
+            <classpath>
+                <path path="${javac.classpath}"/>
+            </classpath>
+            <compilerarg line="${javac.compilerargs}"/>
+            <include name="${javac.includes}"/>
+        </javac>
+    </target>
+    <target depends="init,compile-single" description="Run a single file." name="run-single">
+        <fail unless="run.classname">Must select one file in the IDE or set run.classname</fail>
+        <java classname="${run.classname}" fork="true">
+            <classpath>
+                <path path="${run.classpath}"/>
+            </classpath>
+            <jvmarg line="${run.jvmargs}"/>
+            <syspropertyset>
+                <propertyref prefix="run-sysprop."/>
+                <mapper from="run-sysprop.*" to="*" type="glob"/>
+            </syspropertyset>
+        </java>
+    </target>
+    <target depends="init,compile-single" description="Debug a single file." name="debug-single">
+        <fail unless="debug.classname">Must select one file in the IDE or set debug.classname</fail>
+        <java classname="${debug.classname}" fork="true">
+            <classpath>
+                <path path="${run.classpath}"/>
+            </classpath>
+            <jvmarg line="${run.jvmargs}"/>
+            <jvmarg value="-Xdebug"/>
+            <jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=${jpda.address}"/>
+            <syspropertyset>
+                <propertyref prefix="run-sysprop."/>
+                <mapper from="run-sysprop.*" to="*" type="glob"/>
+            </syspropertyset>
+        </java>
+    </target>
     <target depends="init" name="-do-clean">
         <delete dir="${build.dir}"/>
         <delete dir="${dist.dir}"/>
