@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    build-impl.xml — Implementación de la compilación (NetBeans / Ant)
+    Proyecto: AutomatasAFD
+    Autor: Jonatan Abdiel Alvararado Villavicencio — Carné: 0910-22-8487
+    Curso: Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
+
+    Archivo generado por NetBeans al crear el proyecto. Contiene los
+    objetivos (targets) estándar: init, compile, jar, run, clean y javadoc.
+    NO EDITAR directamente: para personalizar la compilación se usan los
+    objetivos -pre-init, -pre-compile, -post-compile, -pre-jar y -post-jar
+    de build.xml. Si NetBeans lo regenera, conserva estos mismos objetivos.
+-->
+<project xmlns:j2seproject1="http://www.netbeans.org/ns/j2se-project/1" xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3" xmlns:jaxws="http://www.netbeans.org/ns/jax-ws/1" basedir=".." default="default" name="AutomatasAFD-impl">
+    <target depends="test" description="Build and test whole project." name="default"/>
+    <target name="-pre-init">
+        <!-- Empty placeholder for custom pre-init work. -->
+    </target>
+    <target depends="-pre-init" name="-init-private">
+        <property file="nbproject/private/config.properties"/>
+        <property file="nbproject/private/private.properties"/>
+        <property file="nbproject/project.properties"/>
+        <property file="nbproject/private/profile-private.properties"/>
+        <property file="nbproject/private/profile-${config}.properties"/>
+        <property file="${user.home}/.netbeans/ant.properties"/>
+    </target>
+    <target depends="-init-private" name="-init-user">
+        <property file="${user.properties.file}"/>
+        <!-- The two properties below are usually overridden -->
+        <!-- by the active platform. Just a fallback. -->
+        <property name="default.javac.source" value="17"/>
+        <property name="default.javac.target" value="17"/>
+    </target>
+    <target depends="-init-user" name="-init-project">
+        <property file="nbproject/private/platform-private.properties"/>
+        <property file="nbproject/platform.properties"/>
+        <property file="${user.home}/.netbeans/platform.properties"/>
+    </target>
+    <target depends="-init-project" name="-do-init">
+        <condition property="have.tests">
+            <or>
+                <available file="${test.src.dir}"/>
+            </or>
+        </condition>
+        <condition property="have.sources">
+            <or>
+                <available file="${src.dir}"/>
+            </or>
+        </condition>
+        <condition property="netbeans.home">
+            <available file="${netbeans.home}"/>
+        </condition>
+        <condition property="no.javadoc.preview">
+            <isfalse value="${javadoc.preview}"/>
+        </condition>
+        <property name="run.jvmargs" value=""/>
+        <property name="javac.source" value="${default.javac.source}"/>
+        <property name="javac.target" value="${default.javac.target}"/>
+        <property name="build.dir" value="build"/>
+        <property name="build.classes.dir" value="${build.dir}/classes"/>
+        <property name="dist.dir" value="dist"/>
+        <property name="dist.jar" value="${dist.dir}/AutomatasAFD.jar"/>
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.classes.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+    <target depends="-do-init" name="-post-init">
+        <!-- Empty placeholder for custom post-init work. -->
+    </target>
+    <target depends="-post-init" name="init">
+        <!-- Empty placeholder for custom init work. -->
+    </target>
+    <target depends="init" name="-pre-pre-compile">
+        <mkdir dir="${build.classes.dir}"/>
+    </target>
+    <target name="-pre-compile">
+        <!-- Empty placeholder for custom pre-compile work. -->
+    </target>
+    <target depends="init,-pre-pre-compile,-pre-compile" name="-do-compile" if="have.sources">
+        <javac debug="true" deprecation="${javac.deprecation}" destdir="${build.classes.dir}" encoding="${source.encoding}" excludes="${excludes}" includeantruntime="false" includes="${includes}" source="${javac.source}" sourcepath="${src.dir}" srcdir="${src.dir}" target="${javac.target}">
+            <classpath>
+                <path path="${javac.classpath}"/>
+            </classpath>
+            <compilerarg line="${javac.compilerargs}"/>
+        </javac>
+        <copy todir="${build.classes.dir}">
+            <fileset dir="${src.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
+        </copy>
+    </target>
+    <target name="-post-compile">
+        <!-- Empty placeholder for custom post-compile work. -->
+    </target>
+    <target depends="init,-pre-pre-compile,-do-compile,-post-compile" description="Compile project." name="compile"/>
+    <target depends="init" name="-pre-pre-jar">
+        <dirname file="${dist.jar}" property="dist.jar.dir"/>
+        <mkdir dir="${dist.jar.dir}"/>
+    </target>
+    <target name="-pre-jar">
+        <!-- Empty placeholder for custom pre-jar work. -->
+    </target>
+    <target depends="init,compile,-pre-pre-jar,-pre-jar" name="-do-jar" if="have.sources">
+        <jar basedir="${build.classes.dir}" compress="${jar.compress}" jarfile="${dist.jar}" manifest="${manifest.file}">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+            </manifest>
+        </jar>
+    </target>
+    <target name="-post-jar">
+        <!-- Empty placeholder for custom post-jar work. -->
+    </target>
+    <target depends="init,compile,-pre-jar,-do-jar,-post-jar" description="Build JAR." name="jar"/>
+    <target depends="init,compile" description="Run a main class." name="run">
+        <java classname="${main.class}" fork="true">
+            <classpath>
+                <path path="${run.classpath}"/>
+            </classpath>
+            <jvmarg line="${run.jvmargs}"/>
+        </java>
+    </target>
+    <target depends="init" name="-do-clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+    <target name="-post-clean">
+        <!-- Empty placeholder for custom post-clean work. -->
+    </target>
+    <target depends="init,-do-clean,-post-clean" description="Clean build products." name="clean"/>
+    <target depends="init" name="-do-javadoc" if="have.sources">
+        <mkdir dir="${dist.javadoc.dir}"/>
+        <javadoc additionalparam="${javadoc.additionalparam}" author="${javadoc.author}" destdir="${dist.javadoc.dir}" encoding="${javadoc.encoding}" noindex="${javadoc.noindex}" nonavbar="${javadoc.nonavbar}" notree="${javadoc.notree}" source="${javac.source}" splitindex="${javadoc.splitindex}" use="${javadoc.use}" version="${javadoc.version}" windowtitle="${javadoc.windowtitle}">
+            <classpath>
+                <path path="${javac.classpath}"/>
+            </classpath>
+            <fileset dir="${src.dir}" includes="**/*.java"/>
+        </javadoc>
+    </target>
+    <target depends="init,-do-javadoc" description="Build Javadoc." name="javadoc"/>
+    <target depends="init,compile" name="test">
+        <!-- No hay pruebas JUnit en este proyecto: la verificación de la
+             lógica se hace con la clase com.automatas.pruebas.PruebaLogica
+             (ver docs/Manual_Tecnico.docx, sección de pruebas). -->
+        <echo message="Sin pruebas JUnit configuradas."/>
+    </target>
+</project>

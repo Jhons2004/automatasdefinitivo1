@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    build.xml — Proyecto AutomatasAFD (NetBeans / Ant)
+    Autor: Jonatan Abdiel Alvararado Villavicencio — Carné: 0910-22-8487
+    Curso: Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
+    Catedrático: Alan Gonzalo Ucelo Moran
+    Universidad Mariano Gálvez de Guatemala
+    Facultad de Ingeniería en Sistemas de Información y Ciencias de la Computación
+
+    Este archivo es el punto de entrada de la compilación. Toda la lógica
+    de construcción vive en nbproject/build-impl.xml (generado por NetBeans).
+-->
+<project name="AutomatasAFD" default="default" basedir=".">
+    <description>Software de Autómatas Finitos Deterministas y Gramáticas Regulares.</description>
+    <import file="nbproject/build-impl.xml"/>
+</project>

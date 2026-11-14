@@ -1,0 +1,6 @@
+A,A,a;false,false
+A,C,b;false,false
+B,A,a;true,false
+B,C,b;true,false
+C,B,a;false,true
+C,D,b;false,true

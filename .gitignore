@@ -1,0 +1,16 @@
+# Archivos generados por la compilación de NetBeans (Ant) — no se suben.
+build/
+dist/
+# Configuración local de NetBeans (privada de cada equipo).
+nbproject/private/
+# Archivos compilados sueltos.
+*.class
+# Archivos temporales del sistema.
+*.tmp
+*.bak
+*~
+.DS_Store
+Thumbs.db
+# Los manuales (.docx) se entregan aparte y se regeneran con
+# docs/generar_manuales.py (necesita python-docx y las capturas en docs/img).
+*.docx
