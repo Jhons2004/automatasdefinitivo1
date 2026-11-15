@@ -22,6 +22,7 @@ public final class Main {
         // Clase de entrada: no se instancia.
     }
 
+    /** Punto de entrada: aplica Nimbus si está disponible y abre la ventana principal en el EDT. */
     public static void main(String[] args) {
         // Apariencia Nimbus (la más limpia que trae Java por defecto).
         try {

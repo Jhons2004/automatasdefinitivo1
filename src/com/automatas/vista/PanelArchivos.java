@@ -43,6 +43,7 @@ public class PanelArchivos extends JPanel implements Refrescable {
     private final JComboBox<String> cmbNombre = new JComboBox<>();
     private final JTextArea txtMensajes = new JTextArea(10, 60);
 
+    /** Crea el panel de cargar y guardar archivos (.afd / .gtk). */
     public PanelArchivos(VentanaPrincipal ventana) {
         this.ventana = ventana;
         setLayout(new BorderLayout(10, 10));
@@ -82,6 +83,7 @@ public class PanelArchivos extends JPanel implements Refrescable {
         cmbTipo.addActionListener(e -> cargarNombres());
     }
 
+    /** Actualiza el contenido del panel cada vez que se muestra. */
     @Override
     public void alMostrar() {
         cargarNombres();

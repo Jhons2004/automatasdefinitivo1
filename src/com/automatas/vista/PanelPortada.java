@@ -30,6 +30,7 @@ import javax.swing.SwingConstants;
  */
 public class PanelPortada extends JPanel {
 
+    /** Crea la portada con los datos del curso y del autor. */
     public PanelPortada(VentanaPrincipal ventana) {
         setLayout(new BorderLayout(10, 10));
         setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40));
@@ -66,6 +67,7 @@ public class PanelPortada extends JPanel {
         getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
                 .put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "irMenu");
         getActionMap().put("irMenu", new AbstractAction() {
+            /** Tecla ENTER: pasa al menú principal. */
             @Override
             public void actionPerformed(ActionEvent e) {
                 ventana.mostrar(VentanaPrincipal.MENU);

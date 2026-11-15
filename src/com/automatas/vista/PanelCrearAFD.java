@@ -52,6 +52,7 @@ public class PanelCrearAFD extends JPanel implements Refrescable {
     private final JTextArea txtTransiciones = new JTextArea(6, 60);
     private final JTextArea txtMensajes = new JTextArea(5, 60);
 
+    /** Crea el panel para definir un AFD paso a paso. */
     public PanelCrearAFD(VentanaPrincipal ventana) {
         this.ventana = ventana;
         setLayout(new BorderLayout(10, 10));
@@ -103,6 +104,7 @@ public class PanelCrearAFD extends JPanel implements Refrescable {
         txtModo2.setToolTipText("Ejemplo: [a, b] [A, B, C, D; B, D] [A, C; A, C; B, D; -, -]");
     }
 
+    /** Actualiza el contenido del panel cada vez que se muestra. */
     @Override
     public void alMostrar() {
         refrescar();
@@ -249,8 +251,8 @@ public class PanelCrearAFD extends JPanel implements Refrescable {
         sb.append(System.lineSeparator());
         for (com.automatas.modelo.Transicion t : actual.getTransiciones()) {
             sb.append(t).append(";").append(actual.esEstadoAceptacion(t.getOrigen()))
-              .append(",").append(actual.esEstadoAceptacion(t.getDestino()))
-              .append(System.lineSeparator());
+                .append(",").append(actual.esEstadoAceptacion(t.getDestino()))
+                .append(System.lineSeparator());
         }
         txtTransiciones.setText(sb.toString());
     }

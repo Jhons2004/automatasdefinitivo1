@@ -22,6 +22,7 @@ public class PruebaLogica {
     private static int ok = 0;
     private static int fallo = 0;
 
+    /** Ejecuta las 45 comprobaciones y resume el resultado en consola. */
     public static void main(String[] args) throws Exception {
         // ---------- 1. AFD del ejemplo del enunciado (modo 2) ----------
         AFD afd = new AFD("EjemploAFD");

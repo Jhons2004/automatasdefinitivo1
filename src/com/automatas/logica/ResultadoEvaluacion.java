@@ -33,6 +33,7 @@ public class ResultadoEvaluacion {
     /** Pasos individuales del recorrido (uno por símbolo consumido). */
     private final List<String> pasos;
 
+    /** Crea el resultado de una evaluación con su recorrido y su mensaje. */
     public ResultadoEvaluacion(boolean valida, String recorrido, String mensaje, List<String> pasos) {
         this.valida = valida;
         this.recorrido = recorrido == null ? "" : recorrido;
@@ -50,22 +51,27 @@ public class ResultadoEvaluacion {
         return new ResultadoEvaluacion(false, recorrido, "cadena inválida: " + motivo, pasos);
     }
 
+    /** Indica si la cadena resultó válida. */
     public boolean esValida() {
         return valida;
     }
 
+    /** Ruta (AFD) o expansión (gramática) que muestra la evaluación. */
     public String getRecorrido() {
         return recorrido;
     }
 
+    /** Mensaje para el usuario: resultado y motivo. */
     public String getMensaje() {
         return mensaje;
     }
 
+    /** Pasos individuales del recorrido, uno por símbolo consumido. */
     public List<String> getPasos() {
         return pasos;
     }
 
+    /** Mensaje seguido del recorrido, para mostrarlo en una línea. */
     @Override
     public String toString() {
         return mensaje + (recorrido.isEmpty() ? "" : " | " + recorrido);

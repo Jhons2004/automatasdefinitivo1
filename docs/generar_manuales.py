@@ -8,8 +8,10 @@ Catedrático: Alan Gonzalo Ucelo Moran
 """
 import os
 from docx import Document
-from docx.shared import Pt, Inches
-from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.shared import Pt, Inches, RGBColor
+from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK
+from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
 
 # Carpeta raíz del proyecto: la carpeta padre de docs/ (donde vive este script).
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,18 +23,124 @@ CATEDRATICO = "Alan Gonzalo Ucelo Moran"
 UNIVERSIDAD = "Universidad Mariano Gálvez de Guatemala"
 FACULTAD = "Facultad de Ingeniería en Sistemas de Información y Ciencias de la Computación"
 
+# Paleta sobria para el diseño de los manuales.
+AZUL_TITULO = RGBColor(0x1F, 0x38, 0x64)   # azul marino (títulos y portada)
+AZUL_SECCION = RGBColor(0x2F, 0x54, 0x96)   # azul medio (encabezados H2/H3)
+GRIS_TEXTO = RGBColor(0x59, 0x59, 0x59)     # gris (pies, captions, encabezado)
+GRIS_FONDO_CODIGO = "F2F2F2"               # fondo gris claro de los bloques de código
+AZUL_FONDO_TABLA = "1F3864"                # fondo del encabezado de las tablas
+GRIS_FONDO_FILA = "D9E2F3"                 # fondo de las filas impares de las tablas
 
-def nuevo_documento():
+
+def nuevo_documento(titulo_corto):
     doc = Document()
     for section in doc.sections:
         section.top_margin = Inches(1)
         section.bottom_margin = Inches(1)
         section.left_margin = Inches(1)
         section.right_margin = Inches(1)
+        # La portada (primera página) no lleva encabezado ni pie.
+        section.different_first_page_header_footer = True
     normal = doc.styles["Normal"]
     normal.font.name = "Calibri"
     normal.font.size = Pt(11)
+    normal.paragraph_format.space_after = Pt(6)
+    normal.paragraph_format.line_spacing = 1.15
+    h1 = doc.styles["Heading 1"]
+    h1.font.name = "Calibri Light"
+    h1.font.size = Pt(16)
+    h1.font.bold = True
+    h1.font.color.rgb = AZUL_TITULO
+    h1.paragraph_format.space_before = Pt(18)
+    h1.paragraph_format.space_after = Pt(6)
+    h1.paragraph_format.keep_with_next = True
+    h2 = doc.styles["Heading 2"]
+    h2.font.name = "Calibri Light"
+    h2.font.size = Pt(13)
+    h2.font.bold = True
+    h2.font.color.rgb = AZUL_SECCION
+    h2.paragraph_format.space_before = Pt(14)
+    h2.paragraph_format.space_after = Pt(4)
+    h2.paragraph_format.keep_with_next = True
+    h3 = doc.styles["Heading 3"]
+    h3.font.name = "Calibri"
+    h3.font.size = Pt(12)
+    h3.font.bold = True
+    h3.font.color.rgb = AZUL_SECCION
+    h3.paragraph_format.space_before = Pt(10)
+    h3.paragraph_format.space_after = Pt(4)
+    h3.paragraph_format.keep_with_next = True
+    _encabezado_pie(doc, titulo_corto)
     return doc
+
+
+def _sombrear_celda(celda, color_hex):
+    """Fondo de color para una celda de tabla."""
+    tcPr = celda._tc.get_or_add_tcPr()
+    shd = OxmlElement("w:shd")
+    shd.set(qn("w:val"), "clear")
+    shd.set(qn("w:color"), "auto")
+    shd.set(qn("w:fill"), color_hex)
+    tcPr.append(shd)
+
+
+def _sombrear_parrafo(parrafo, color_hex):
+    """Fondo de color para un párrafo completo (bloques de código)."""
+    pPr = parrafo._p.get_or_add_pPr()
+    shd = OxmlElement("w:shd")
+    shd.set(qn("w:val"), "clear")
+    shd.set(qn("w:color"), "auto")
+    shd.set(qn("w:fill"), color_hex)
+    pPr.append(shd)
+
+
+def _regla(parrafo, color_hex="1F3864", tamano=12):
+    """Línea horizontal bajo el párrafo (borde inferior)."""
+    pPr = parrafo._p.get_or_add_pPr()
+    pBdr = OxmlElement("w:pBdr")
+    abajo = OxmlElement("w:bottom")
+    abajo.set(qn("w:val"), "single")
+    abajo.set(qn("w:sz"), str(tamano))
+    abajo.set(qn("w:space"), "4")
+    abajo.set(qn("w:color"), color_hex)
+    pBdr.append(abajo)
+    pPr.append(pBdr)
+
+
+def _campo_pagina(parrafo):
+    """Inserta el campo PAGE (número de página) en el párrafo dado."""
+    run = parrafo.add_run()
+    run.font.name = "Calibri"
+    run.font.size = Pt(9)
+    run.font.color.rgb = GRIS_TEXTO
+    inicio = OxmlElement("w:fldChar")
+    inicio.set(qn("w:fldCharType"), "begin")
+    instr = OxmlElement("w:instrText")
+    instr.set(qn("xml:space"), "preserve")
+    instr.text = "PAGE"
+    fin = OxmlElement("w:fldChar")
+    fin.set(qn("w:fldCharType"), "end")
+    run._r.append(inicio)
+    run._r.append(instr)
+    run._r.append(fin)
+
+
+def _encabezado_pie(doc, titulo_corto):
+    """Encabezado con el título del manual y pie con el proyecto y la página."""
+    for section in doc.sections:
+        encabezado = section.header.paragraphs[0]
+        encabezado.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+        run = encabezado.add_run("AutomatasAFD — " + titulo_corto)
+        run.font.name = "Calibri"
+        run.font.size = Pt(9)
+        run.font.color.rgb = GRIS_TEXTO
+        pie = section.footer.paragraphs[0]
+        pie.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        run = pie.add_run("AutomatasAFD  ·  Página ")
+        run.font.name = "Calibri"
+        run.font.size = Pt(9)
+        run.font.color.rgb = GRIS_TEXTO
+        _campo_pagina(pie)
 
 
 def h1(doc, texto):
@@ -56,32 +164,56 @@ def bullet(doc, texto):
 
 
 def codigo(doc, texto):
-    for linea in texto.strip("\n").split("\n"):
-        par = doc.add_paragraph()
+    par = doc.add_paragraph()
+    par.paragraph_format.space_after = Pt(6)
+    par.paragraph_format.left_indent = Inches(0.15)
+    _sombrear_parrafo(par, GRIS_FONDO_CODIGO)
+    lineas = texto.strip("\n").split("\n")
+    for i, linea in enumerate(lineas):
         run = par.add_run(linea if linea else " ")
         run.font.name = "Courier New"
         run.font.size = Pt(9.5)
+        if i < len(lineas) - 1:
+            run.add_break()
 
 
 def tabla(doc, encabezados, filas):
     t = doc.add_table(rows=1, cols=len(encabezados))
     t.style = "Table Grid"
     for i, h in enumerate(encabezados):
-        t.rows[0].cells[i].text = h
-    for fila in filas:
+        celda = t.rows[0].cells[i]
+        celda.text = h
+        _sombrear_celda(celda, AZUL_FONDO_TABLA)
+        for par in celda.paragraphs:
+            for run in par.runs:
+                run.bold = True
+                run.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
+    for r, fila in enumerate(filas):
         celdas = t.add_row().cells
         for i, valor in enumerate(fila):
             celdas[i].text = valor
+            if r % 2 == 1:
+                _sombrear_celda(celdas[i], GRIS_FONDO_FILA)
     doc.add_paragraph()
     return t
 
 
-def imagen(doc, nombre, ancho=6.0):
+def imagen(doc, nombre, pie=None, ancho=6.0):
     ruta = os.path.join(IMG, nombre)
     if os.path.exists(ruta):
         par = doc.add_paragraph()
         par.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        par.paragraph_format.space_before = Pt(6)
+        par.paragraph_format.space_after = Pt(2)
         par.add_run().add_picture(ruta, width=Inches(ancho))
+        if pie:
+            par_pie = doc.add_paragraph()
+            par_pie.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            par_pie.paragraph_format.space_after = Pt(8)
+            run = par_pie.add_run(pie)
+            run.italic = True
+            run.font.size = Pt(9.5)
+            run.font.color.rgb = GRIS_TEXTO
     else:
         p(doc, "[Imagen no disponible: " + nombre + "]")
 
@@ -101,11 +233,15 @@ def portada(doc, titulo, subtitulo):
     run = par.add_run(titulo)
     run.bold = True
     run.font.size = Pt(22)
+    run.font.color.rgb = AZUL_TITULO
+    _regla(par)
     par = doc.add_paragraph()
     par.alignment = WD_ALIGN_PARAGRAPH.CENTER
     run = par.add_run(subtitulo)
     run.font.size = Pt(14)
+    run.font.color.rgb = AZUL_SECCION
     doc.add_paragraph()
+    ultimo = None
     for linea in [
         "Curso: " + CURSO,
         "Catedrático: " + CATEDRATICO,
@@ -116,13 +252,16 @@ def portada(doc, titulo, subtitulo):
         par = doc.add_paragraph()
         par.alignment = WD_ALIGN_PARAGRAPH.CENTER
         par.add_run(linea).font.size = Pt(12)
+        ultimo = par
+    # Salto de página sin agregar otro párrafo.
+    ultimo.add_run().add_break(WD_BREAK.PAGE)
 
 
 # =====================================================================
 # MANUAL DE USUARIO
 # =====================================================================
 def manual_usuario():
-    doc = nuevo_documento()
+    doc = nuevo_documento("Manual de Usuario")
     portada(doc, "Manual de Usuario",
             "Software de Autómatas Finitos Deterministas\ny Gramáticas Regulares (AutomatasAFD)")
 
@@ -175,17 +314,17 @@ def manual_usuario():
         ["Ayuda", "Datos del curso, nombre del catedrático y último dígito del carné."],
     ])
     h2(doc, "3.1 Portada")
-    imagen(doc, "portada.png")
+    imagen(doc, "portada.png", "Figura 1. Portada de la aplicación con los datos del curso.")
     p(doc, "La portada muestra la universidad, la facultad, el curso, el ciclo y "
            "la sección, el nombre del proyecto, el autor, el carné y el "
            "catedrático. Al presionar ENTER (o el botón) se pasa al menú principal.")
     h2(doc, "3.2 Menú principal")
-    imagen(doc, "menu.png")
+    imagen(doc, "menu.png", "Figura 2. Menú principal con las ocho opciones.")
     p(doc, "Cada botón limpia la pantalla y muestra las opciones de esa tarea. "
            "El botón “Salir / Cerrar programa” pide confirmación antes de cerrar.")
 
     h1(doc, "4. Crear AFD")
-    imagen(doc, "crear_afd.png")
+    imagen(doc, "crear_afd.png", "Figura 3. Panel Crear AFD con sus seis secciones.")
     p(doc, "Pasos para crear un AFD:")
     p(doc, "1. Escribir el nombre del AFD (es el nombre con el que se usará dentro "
            "de la aplicación) y presionar “Nuevo AFD”. Si ya existe un AFD con ese "
@@ -240,7 +379,7 @@ def manual_usuario():
            "recuerda definirlo.")
 
     h1(doc, "5. Crear Gramática")
-    imagen(doc, "crear_gramatica.png")
+    imagen(doc, "crear_gramatica.png", "Figura 4. Panel Crear Gramática.")
     p(doc, "Pasos para crear una gramática regular:")
     p(doc, "1. Escribir el nombre de la gramática y presionar “Nueva gramática”.")
     p(doc, "2. Ingresar NT: escribir un No Terminal y presionar “Agregar NT”. Se "
@@ -267,7 +406,7 @@ def manual_usuario():
            "y determinista; ver la sección 9).")
 
     h1(doc, "6. Evaluar Cadenas")
-    imagen(doc, "evaluar.png")
+    imagen(doc, "evaluar.png", "Figura 5. Panel Evaluar Cadenas.")
     p(doc, "1. Elegir el tipo (AFD o Gramática) y el nombre de la gramática o AFD "
            "a usar (deben estar creados o cargados antes).")
     p(doc, "2. Escribir la cadena y presionar “Solo validar”.")
@@ -294,7 +433,7 @@ def manual_usuario():
            "aparece en el reporte PDF.")
 
     h1(doc, "7. Cargar y guardar archivos")
-    imagen(doc, "archivos.png")
+    imagen(doc, "archivos.png", "Figura 6. Panel Cargar y guardar archivos.")
     h2(doc, "7.1 Cargar archivo de entrada")
     p(doc, "Con el File Chooser se selecciona el archivo. El nombre del archivo "
            "(sin la extensión) es el nombre del AFD o de la gramática dentro de "
@@ -322,7 +461,7 @@ def manual_usuario():
            "archivo toma como inicial el estado que esté al inicio.")
 
     h1(doc, "8. Reportes")
-    imagen(doc, "reportes.png")
+    imagen(doc, "reportes.png", "Figura 7. Panel Reportes.")
     p(doc, "1. Elegir el tipo (AFD o Gramática) y el nombre.")
     p(doc, "2. “Ver Detalle” muestra en pantalla todos los elementos formales:")
     bullet(doc, "AFD: alfabeto, estados, estado inicial, estados de aceptación y "
@@ -338,10 +477,10 @@ def manual_usuario():
     bullet(doc, "Al menos 3 cadenas válidas y 3 cadenas inválidas generadas por "
                 "el programa.")
     bullet(doc, "El historial de cadenas evaluadas en la sesión.")
-    imagen(doc, "reporte_pdf.png")
+    imagen(doc, "reporte_pdf.png", "Figura 8. Ejemplo de reporte PDF generado.")
     p(doc, "El grafo usa doble círculo para los estados de aceptación y una "
            "flecha hacia el estado inicial:")
-    imagen(doc, "grafo_ejemplo.png", ancho=4.5)
+    imagen(doc, "grafo_ejemplo.png", "Figura 9. Grafo del AFD del enunciado: doble círculo en B y D.", ancho=4.5)
 
     h1(doc, "9. Conversión entre gramática y AFD")
     p(doc, "Desde “Crear Gramática”, el botón “Generar AFD de esta gramática” "
@@ -390,7 +529,7 @@ def manual_usuario():
 # MANUAL TÉCNICO
 # =====================================================================
 def manual_tecnico():
-    doc = nuevo_documento()
+    doc = nuevo_documento("Manual Técnico")
     portada(doc, "Manual Técnico",
             "Software de Autómatas Finitos Deterministas\ny Gramáticas Regulares (AutomatasAFD)")
 

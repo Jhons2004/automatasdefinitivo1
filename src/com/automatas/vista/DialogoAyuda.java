@@ -25,6 +25,7 @@ import javax.swing.SwingConstants;
  */
 public class DialogoAyuda extends JDialog {
 
+    /** Crea el diálogo de ayuda con los datos del curso. */
     public DialogoAyuda(VentanaPrincipal ventana) {
         super(ventana, "Ayuda", true);
         setLayout(new BorderLayout(10, 10));

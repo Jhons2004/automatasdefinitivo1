@@ -61,22 +61,27 @@ public class Gramatica {
         this.nombre = nombre.trim();
     }
 
+    /** Nombre con el que se identifica la gramática dentro de la aplicación. */
     public String getNombre() {
         return nombre;
     }
 
+    /** N: conjunto de no terminales, en el orden en que se agregaron. */
     public Set<String> getNoTerminales() {
         return noTerminales;
     }
 
+    /** Σ: conjunto de terminales, en el orden en que se agregaron. */
     public Set<String> getTerminales() {
         return terminales;
     }
 
+    /** Símbolo inicial (S), o {@code null} si aún no se definió. */
     public String getInicial() {
         return inicial;
     }
 
+    /** Producciones (P), en el orden en que se agregaron. */
     public List<Produccion> getProducciones() {
         return producciones;
     }
@@ -272,8 +277,8 @@ public class Gramatica {
         sb.append("No Terminales (N): ").append(unir(noTerminales)).append(System.lineSeparator());
         sb.append("Terminales (Σ): ").append(unir(terminales)).append(System.lineSeparator());
         sb.append("Símbolo inicial (S): ")
-          .append(inicial == null ? "(sin definir)" : inicial)
-          .append(System.lineSeparator());
+            .append(inicial == null ? "(sin definir)" : inicial)
+            .append(System.lineSeparator());
         sb.append("Producciones (P):").append(System.lineSeparator());
         if (producciones.isEmpty()) {
             sb.append("  (sin producciones)").append(System.lineSeparator());

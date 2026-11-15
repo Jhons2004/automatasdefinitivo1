@@ -40,6 +40,7 @@ public class PanelEvaluar extends JPanel implements Refrescable {
     private final JTextField txtCadena = new JTextField(25);
     private final JTextArea txtResultado = new JTextArea(14, 60);
 
+    /** Crea el panel de evaluación de cadenas. */
     public PanelEvaluar(VentanaPrincipal ventana) {
         this.ventana = ventana;
         setLayout(new BorderLayout(10, 10));
@@ -75,6 +76,7 @@ public class PanelEvaluar extends JPanel implements Refrescable {
         cmbTipo.addActionListener(e -> cargarNombres());
     }
 
+    /** Actualiza el contenido del panel cada vez que se muestra. */
     @Override
     public void alMostrar() {
         cargarNombres();

@@ -42,6 +42,7 @@ public class VentanaPrincipal extends JFrame {
     private final PanelReportes panelReportes;
     private final PanelArchivos panelArchivos;
 
+    /** Crea la ventana principal de la aplicación. */
     public VentanaPrincipal() {
         super("Autómatas y Lenguajes Formales — AFD y Gramáticas Regulares");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,6 +70,7 @@ public class VentanaPrincipal extends JFrame {
         mostrar(PORTADA);
     }
 
+    /** Repositorio central con los AFD, las gramáticas y el historial. */
     public Repositorio getRepositorio() {
         return repositorio;
     }

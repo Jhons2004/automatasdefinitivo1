@@ -52,6 +52,7 @@ public class PanelCrearGramatica extends JPanel implements Refrescable {
     private final DefaultListModel<String> modeloProducciones = new DefaultListModel<>();
     private final JTextArea txtMensajes = new JTextArea(5, 60);
 
+    /** Crea el panel para definir una gramática regular. */
     public PanelCrearGramatica(VentanaPrincipal ventana) {
         this.ventana = ventana;
         setLayout(new BorderLayout(10, 10));
@@ -96,6 +97,7 @@ public class PanelCrearGramatica extends JPanel implements Refrescable {
         txtProduccion.setToolTipText("Ejemplos: A > a B   |   A > 0B | 1A | epsilon");
     }
 
+    /** Actualiza el contenido del panel cada vez que se muestra. */
     @Override
     public void alMostrar() {
         refrescar();
@@ -110,7 +112,8 @@ public class PanelCrearGramatica extends JPanel implements Refrescable {
         }
         actual = new Gramatica(nombre);
         boolean reemplazado = ventana.getRepositorio().guardarGramatica(actual);
-        lblActual.setText("Gramática actual: " + nombre + (reemplazado ? " (reemplazó a la anterior con ese nombre)" : ""));
+        lblActual.setText("Gramática actual: " + nombre
+                + (reemplazado ? " (reemplazó a la anterior con ese nombre)" : ""));
         txtNombre.setText("");
         refrescar();
         mensaje("Gramática '" + nombre + "' creada. Ahora agregue No Terminales, Terminales, "
