@@ -29,7 +29,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * Reporte</b> (archivo PDF con el detalle completo, la representación
  * gráfica del AFD en Graphviz, al menos 3 cadenas válidas y 3 inválidas, y
  * el historial de evaluaciones de la sesión). También permite generar solo
- * el grafo Graphviz (.dot y PNG).</p>
+ * el grafo Graphviz (.dot y PNG) o verlo en pantalla en una ventana.</p>
  *
  * @author Jonatan Abdiel Alvararado Villavicencio
  * @carné 0910-22-8487
@@ -62,6 +62,7 @@ public class PanelReportes extends JPanel implements Refrescable {
         JPanel fila2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         fila2.add(boton("Ver Detalle", this::verDetalle));
         fila2.add(boton("Generar grafo Graphviz", this::generarGrafo));
+        fila2.add(boton("Ver grafo en pantalla", this::verGrafo));
         fila2.add(boton("Generar Reporte PDF", this::generarPdf));
         norte.add(fila2);
         add(norte, BorderLayout.NORTH);
@@ -154,6 +155,40 @@ public class PanelReportes extends JPanel implements Refrescable {
             txtSalida.setText(sb.toString());
         } catch (Exception e) {
             txtSalida.setText("Error al generar el grafo: " + e.getMessage());
+        }
+    }
+
+    /** Muestra el grafo en una ventana dentro de la aplicación. */
+    private void verGrafo() {
+        String nombre = nombreSeleccionado();
+        if (nombre == null) {
+            txtSalida.setText("No hay ningún " + (esAfd() ? "AFD" : "gramática")
+                    + " creado todavía.");
+            return;
+        }
+        AFD afd = afdParaGrafo(nombre);
+        if (afd == null) {
+            return; // El error ya quedó en txtSalida.
+        }
+        try {
+            String seguro = nombre.replaceAll("[^A-Za-z0-9_.-]", "_");
+            File dot = File.createTempFile("grafo_" + seguro + "_", ".dot");
+            dot.deleteOnExit();
+            GeneradorGrafos.escribirDot(afd, dot);
+            File png = new File(dot.getParentFile(),
+                    dot.getName().replaceFirst("(?i)\\.dot$", "") + ".png");
+            png.deleteOnExit();
+            if (GeneradorGrafos.renderizarPng(dot, png)) {
+                new VisorGrafo(ventana, nombre, png).setVisible(true);
+            } else {
+                String texto = "No se pudo generar el PNG: Graphviz no está instalado. "
+                        + "Puede renderizarlo con: dot -Tpng " + dot.getName()
+                        + " -o " + png.getName() + System.lineSeparator()
+                        + System.lineSeparator() + GeneradorGrafos.aDot(afd);
+                new VisorGrafo(ventana, nombre, texto).setVisible(true);
+            }
+        } catch (Exception e) {
+            txtSalida.setText("Error al mostrar el grafo: " + e.getMessage());
         }
     }
 
