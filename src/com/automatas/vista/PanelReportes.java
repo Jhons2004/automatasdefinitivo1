@@ -44,6 +44,7 @@ public class PanelReportes extends JPanel implements Refrescable {
     private final JComboBox<String> cmbNombre = new JComboBox<>();
     private final JTextArea txtSalida = new JTextArea(16, 60);
 
+    /** Crea el panel de reportes (detalle, grafo y PDF). */
     public PanelReportes(VentanaPrincipal ventana) {
         this.ventana = ventana;
         setLayout(new BorderLayout(10, 10));
@@ -76,6 +77,7 @@ public class PanelReportes extends JPanel implements Refrescable {
         cmbTipo.addActionListener(e -> cargarNombres());
     }
 
+    /** Actualiza el contenido del panel cada vez que se muestra. */
     @Override
     public void alMostrar() {
         cargarNombres();

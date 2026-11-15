@@ -42,30 +42,30 @@ public final class GeneradorGrafos {
     public static String aDot(AFD afd) {
         StringBuilder sb = new StringBuilder();
         sb.append("digraph \"").append(afd.getNombre()).append("\" {")
-          .append(System.lineSeparator());
+            .append(System.lineSeparator());
         sb.append("  rankdir=LR;").append(System.lineSeparator());
         sb.append("  label=\"AFD: ").append(afd.getNombre()).append("\";")
-          .append(System.lineSeparator());
+            .append(System.lineSeparator());
         sb.append("  node [shape=circle];").append(System.lineSeparator());
         // Flecha al estado inicial.
         sb.append("  inicio [shape=none, label=\"\"];").append(System.lineSeparator());
         if (afd.getEstadoInicial() != null) {
             sb.append("  inicio -> \"").append(afd.getEstadoInicial()).append("\";")
-              .append(System.lineSeparator());
+                .append(System.lineSeparator());
         }
         // Estados: doble círculo para los de aceptación.
         for (String estado : afd.getEstados()) {
             if (afd.esEstadoAceptacion(estado)) {
                 sb.append("  \"").append(estado).append("\" [shape=doublecircle];")
-                  .append(System.lineSeparator());
+                    .append(System.lineSeparator());
             }
         }
         // Transiciones: flechas etiquetadas con el símbolo.
         for (Transicion t : afd.getTransiciones()) {
             sb.append("  \"").append(t.getOrigen()).append("\" -> \"")
-              .append(t.getDestino()).append("\" [label=\"")
-              .append(t.getSimbolo()).append("\"];")
-              .append(System.lineSeparator());
+                .append(t.getDestino()).append("\" [label=\"")
+                .append(t.getSimbolo()).append("\"];")
+                .append(System.lineSeparator());
         }
         sb.append("}").append(System.lineSeparator());
         return sb.toString();

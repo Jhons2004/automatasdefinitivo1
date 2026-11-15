@@ -63,26 +63,32 @@ public class Repositorio {
         return reemplazado;
     }
 
+    /** Devuelve el AFD guardado con ese nombre, o {@code null} si no existe. */
     public AFD obtenerAfd(String nombre) {
         return afds.get(nombre);
     }
 
+    /** Devuelve la gramática guardada con ese nombre, o {@code null} si no existe. */
     public Gramatica obtenerGramatica(String nombre) {
         return gramaticas.get(nombre);
     }
 
+    /** Nombres de los AFD guardados, en el orden en que se crearon. */
     public List<String> nombresAfd() {
         return new ArrayList<>(afds.keySet());
     }
 
+    /** Nombres de las gramáticas guardadas, en el orden en que se crearon. */
     public List<String> nombresGramatica() {
         return new ArrayList<>(gramaticas.keySet());
     }
 
+    /** Indica si ya hay un AFD guardado con ese nombre. */
     public boolean existeAfd(String nombre) {
         return afds.containsKey(nombre);
     }
 
+    /** Indica si ya hay una gramática guardada con ese nombre. */
     public boolean existeGramatica(String nombre) {
         return gramaticas.containsKey(nombre);
     }
@@ -133,26 +139,32 @@ public class Repositorio {
             this.fechaHora = LocalDateTime.now();
         }
 
+        /** Tipo de la evaluación: "AFD" o "Gramática". */
         public String getTipo() {
             return tipo;
         }
 
+        /** Nombre del AFD o de la gramática evaluada. */
         public String getNombre() {
             return nombre;
         }
 
+        /** Cadena que se evaluó. */
         public String getCadena() {
             return cadena;
         }
 
+        /** Indica si la cadena resultó válida. */
         public boolean esValida() {
             return valida;
         }
 
+        /** Fecha y hora en que se hizo la evaluación. */
         public LocalDateTime getFechaHora() {
             return fechaHora;
         }
 
+        /** Una línea del historial: fecha, tipo, nombre, cadena y resultado. */
         @Override
         public String toString() {
             return fechaHora.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))

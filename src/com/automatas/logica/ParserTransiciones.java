@@ -174,11 +174,11 @@ public final class ParserTransiciones {
         }
         StringBuilder resumen = new StringBuilder();
         resumen.append("Tabla aplicada: ").append(agregadas)
-               .append(" transiciones agregadas. Estados: ")
-               .append(String.join(", ", estados))
-               .append(". Aceptación: ")
-               .append(aceptacion.isEmpty() ? "(ninguno)" : String.join(", ", aceptacion))
-               .append(".");
+            .append(" transiciones agregadas. Estados: ")
+            .append(String.join(", ", estados))
+            .append(". Aceptación: ")
+            .append(aceptacion.isEmpty() ? "(ninguno)" : String.join(", ", aceptacion))
+            .append(".");
         if (afd.getEstadoInicial() == null) {
             resumen.append(" Recuerde definir el estado inicial.");
         }

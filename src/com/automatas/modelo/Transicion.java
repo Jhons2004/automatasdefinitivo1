@@ -57,14 +57,17 @@ public class Transicion {
         this.simbolo = simbolo.trim();
     }
 
+    /** Estado del que parte la transición. */
     public String getOrigen() {
         return origen;
     }
 
+    /** Estado al que llega la transición. */
     public String getDestino() {
         return destino;
     }
 
+    /** Símbolo con el que se recorre la transición. */
     public String getSimbolo() {
         return simbolo;
     }
@@ -87,6 +90,7 @@ public class Transicion {
         return origen.equals(otra.origen) && simbolo.equals(otra.simbolo);
     }
 
+    /** Código hash coherente con {@link #equals(Object)}. */
     @Override
     public int hashCode() {
         return Objects.hash(origen, simbolo);

@@ -106,10 +106,12 @@ public class Produccion {
         return new Produccion(izquierdo, simbolos);
     }
 
+    /** No terminal del lado izquierdo de la producción. */
     public String getIzquierdo() {
         return izquierdo;
     }
 
+    /** Símbolos del lado derecho, en orden. */
     public List<String> getDerecho() {
         return derecho;
     }
@@ -136,6 +138,7 @@ public class Produccion {
         return izquierdo.equals(otra.izquierdo) && derecho.equals(otra.derecho);
     }
 
+    /** Código hash coherente con {@link #equals(Object)}. */
     @Override
     public int hashCode() {
         return Objects.hash(izquierdo, derecho);

@@ -66,26 +66,32 @@ public class AFD {
         this.nombre = nombre.trim();
     }
 
+    /** Nombre con el que se identifica el AFD dentro de la aplicación. */
     public String getNombre() {
         return nombre;
     }
 
+    /** Q: conjunto de estados, en el orden en que se agregaron. */
     public Set<String> getEstados() {
         return estados;
     }
 
+    /** Σ: alfabeto del lenguaje, en el orden en que se agregó. */
     public Set<String> getAlfabeto() {
         return alfabeto;
     }
 
+    /** Estado inicial (q0), o {@code null} si aún no se definió. */
     public String getEstadoInicial() {
         return estadoInicial;
     }
 
+    /** F: conjunto de estados de aceptación. */
     public Set<String> getEstadosAceptacion() {
         return estadosAceptacion;
     }
 
+    /** Transiciones (δ), en el orden en que se agregaron. */
     public List<Transicion> getTransiciones() {
         return transiciones;
     }
@@ -268,11 +274,11 @@ public class AFD {
         });
         for (Transicion t : ordenadas) {
             sb.append(t.getOrigen()).append(",")
-              .append(t.getDestino()).append(",")
-              .append(t.getSimbolo()).append(";")
-              .append(esEstadoAceptacion(t.getOrigen())).append(",")
-              .append(esEstadoAceptacion(t.getDestino()))
-              .append(System.lineSeparator());
+                .append(t.getDestino()).append(",")
+                .append(t.getSimbolo()).append(";")
+                .append(esEstadoAceptacion(t.getOrigen())).append(",")
+                .append(esEstadoAceptacion(t.getDestino()))
+                .append(System.lineSeparator());
         }
         return sb.toString();
     }
@@ -290,20 +296,20 @@ public class AFD {
         sb.append("Alfabeto (Σ): ").append(unir(alfabeto)).append(System.lineSeparator());
         sb.append("Estados (Q): ").append(unir(estados)).append(System.lineSeparator());
         sb.append("Estado inicial (q0): ")
-          .append(estadoInicial == null ? "(sin definir)" : estadoInicial)
-          .append(System.lineSeparator());
+            .append(estadoInicial == null ? "(sin definir)" : estadoInicial)
+            .append(System.lineSeparator());
         sb.append("Estados de aceptación (F): ")
-          .append(estadosAceptacion.isEmpty() ? "(ninguno)" : unir(estadosAceptacion))
-          .append(System.lineSeparator());
+            .append(estadosAceptacion.isEmpty() ? "(ninguno)" : unir(estadosAceptacion))
+            .append(System.lineSeparator());
         sb.append("Transiciones (δ):").append(System.lineSeparator());
         if (transiciones.isEmpty()) {
             sb.append("  (sin transiciones)").append(System.lineSeparator());
         }
         for (Transicion t : transiciones) {
             sb.append("  ").append(t)
-              .append(";").append(esEstadoAceptacion(t.getOrigen()))
-              .append(",").append(esEstadoAceptacion(t.getDestino()))
-              .append(System.lineSeparator());
+                .append(";").append(esEstadoAceptacion(t.getOrigen()))
+                .append(",").append(esEstadoAceptacion(t.getDestino()))
+                .append(System.lineSeparator());
         }
         return sb.toString();
     }

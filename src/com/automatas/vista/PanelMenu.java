@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
  */
 public class PanelMenu extends JPanel {
 
+    /** Crea el menú principal con las opciones de la aplicación. */
     public PanelMenu(VentanaPrincipal ventana) {
         setLayout(null);
         setBorder(BorderFactory.createEmptyBorder(30, 60, 30, 60));
