@@ -3,7 +3,7 @@
 Proyecto del curso **Autómatas y Lenguajes Formales (VI Ciclo, Sección 3)**,
 Universidad Mariano Gálvez de Guatemala.
 
-**Autor:** Jonatan Abdiel Alvararado Villavicencio — **Carné:** 0910-22-8487
+**Autor:** Jonatan Abdiel Alvarado Villavicencio — **Carné:** 0910-22-8487
 **Catedrático:** Alan Gonzalo Ucelo Moran
 
 Aplicación de escritorio en **Java (NetBeans)** que permite definir gramáticas

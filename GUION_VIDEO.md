@@ -14,7 +14,7 @@ qué escribir y qué se debe ver.
 
 ## 0:00 – 0:40 | Presentación
 
-- "Buen día, soy Jonatan Abdiel Alvararado Villavicencio, carné 0910-22-8487,
+- "Buen día, soy Jonatan Abdiel Alvarado Villavicencio, carné 0910-22-8487,
   de la Sección 3 del curso Autómatas y Lenguajes Formales, con el catedrático
   Alan Gonzalo Ucelo Moran."
 - "Este es mi proyecto: un software en Java, hecho en NetBeans, para definir

@@ -26,7 +26,7 @@ import javax.swing.JTextField;
  * demuestra, con los formatos del enunciado. Cada evaluación queda
  * registrada en el historial del repositorio (para los reportes).</p>
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran

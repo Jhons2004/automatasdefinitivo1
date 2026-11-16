@@ -18,7 +18,7 @@ import javax.swing.SwingConstants;
  * dígito del carné, como pide el enunciado. Está disponible desde el menú
  * principal y desde cada submenú.</p>
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran

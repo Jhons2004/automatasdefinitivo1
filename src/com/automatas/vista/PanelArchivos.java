@@ -30,7 +30,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * se desea guardar; se escribe el archivo {@code .afd} o {@code .gtk} con
  * el formato del enunciado.</p>
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran

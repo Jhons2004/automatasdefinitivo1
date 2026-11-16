@@ -29,7 +29,7 @@ import java.util.Set;
  * {@code com.automatas.logica.ValidadorAFD} y la conversión a gramática en
  * {@code com.automatas.logica.Convertidor}.</p>
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran

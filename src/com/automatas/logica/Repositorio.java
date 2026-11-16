@@ -23,7 +23,7 @@ import java.util.Map;
  * aquí. Es el patrón de diseño más simple para una aplicación de escritorio
  * de este tamaño (un "almacén" central).</p>
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran

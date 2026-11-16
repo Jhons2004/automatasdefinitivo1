@@ -5,7 +5,7 @@ package com.automatas.modelo;
  * la ayuda, los reportes PDF y los encabezados de los archivos muestren
  * siempre los mismos datos.
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran
@@ -13,7 +13,7 @@ package com.automatas.modelo;
 public final class DatosDelCurso {
 
     /** Nombre completo del autor del proyecto. */
-    public static final String AUTOR = "Jonatan Abdiel Alvararado Villavicencio";
+    public static final String AUTOR = "Jonatan Abdiel Alvarado Villavicencio";
 
     /** Número de carné del autor. */
     public static final String CARNE = "0910-22-8487";

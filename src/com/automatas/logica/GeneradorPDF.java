@@ -42,7 +42,7 @@ import javax.imageio.ImageIO;
  * fuentes son proporcionales, así que se usa un límite conservador). La
  * imagen del grafo se incrusta en JPEG (el PNG se convierte con ImageIO).</p>
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran

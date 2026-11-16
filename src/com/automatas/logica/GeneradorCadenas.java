@@ -19,7 +19,7 @@ import java.util.List;
  * <p>La enumeración está acotada (longitud máxima y número máximo de
  * candidatos) para que no se dispare con alfabetos grandes.</p>
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran

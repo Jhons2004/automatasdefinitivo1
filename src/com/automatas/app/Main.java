@@ -11,7 +11,7 @@ import javax.swing.UIManager;
  * principal en la portada. Todo el trabajo se hace en el hilo de despacho
  * de eventos de Swing (EDT), como exige Swing.</p>
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran

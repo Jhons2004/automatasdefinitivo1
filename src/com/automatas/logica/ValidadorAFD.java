@@ -26,7 +26,7 @@ import java.util.List;
  * {@code Ruta en AFD: A, A, a; A, A, a; A, C, b; C, B, a; B, C, b; C, D, b}
  * </p>
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran
