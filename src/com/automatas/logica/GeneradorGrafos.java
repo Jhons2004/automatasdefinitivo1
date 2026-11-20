@@ -22,7 +22,7 @@ import java.io.PrintWriter;
  * círculo, el estado inicial recibe una flecha desde un nodo invisible, y
  * cada transición es una flecha etiquetada con su símbolo.</p>
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran

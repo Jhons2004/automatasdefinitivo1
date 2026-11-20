@@ -2,7 +2,7 @@
 """Genera los dos manuales del proyecto AutomatasAFD (Manual de Usuario y
 Manual Técnico) en formato Word (.docx).
 
-Autor: Jonatan Abdiel Alvararado Villavicencio — Carné: 0910-22-8487
+Autor: Jonatan Abdiel Alvarado Villavicencio — Carné: 0910-22-8487
 Curso: Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
 Catedrático: Alan Gonzalo Ucelo Moran
 """
@@ -16,7 +16,7 @@ from docx.oxml.ns import qn
 # Carpeta raíz del proyecto: la carpeta padre de docs/ (donde vive este script).
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IMG = os.path.join(BASE, "docs", "img")
-AUTOR = "Jonatan Abdiel Alvararado Villavicencio"
+AUTOR = "Jonatan Abdiel Alvarado Villavicencio"
 CARNE = "0910-22-8487"
 CURSO = "Autómatas y Lenguajes Formales — VI Ciclo — Sección 3"
 CATEDRATICO = "Alan Gonzalo Ucelo Moran"

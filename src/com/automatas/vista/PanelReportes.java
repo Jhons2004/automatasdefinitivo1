@@ -31,7 +31,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * el historial de evaluaciones de la sesión). También permite generar solo
  * el grafo Graphviz (.dot y PNG) o verlo en pantalla en una ventana.</p>
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran

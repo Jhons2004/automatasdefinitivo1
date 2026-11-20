@@ -22,7 +22,7 @@ import javax.swing.JTextArea;
  * pudo generar, muestra el texto DOT del grafo con las instrucciones para
  * renderizarlo a mano.</p>
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran

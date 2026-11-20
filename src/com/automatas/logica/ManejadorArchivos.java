@@ -41,7 +41,7 @@ import java.util.Map;
  * gramática. Para usar {@code |} se crea una producción con el mismo no
  * terminal pero con transición distinta.</p>
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran

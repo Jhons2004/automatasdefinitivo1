@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
  * coma). El símbolo {@code -} indica que el estado no tiene transición con
  * ese símbolo.</p>
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran

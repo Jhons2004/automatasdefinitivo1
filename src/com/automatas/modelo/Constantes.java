@@ -6,7 +6,7 @@ package com.automatas.modelo;
  * <p>Centraliza los símbolos reservados del enunciado para que ningún módulo
  * use literales sueltos y sea fácil cambiarlos en un solo lugar.</p>
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran

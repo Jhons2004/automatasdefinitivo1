@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  * y se muestra la nueva, como pide el enunciado. La ventana guarda el
  * {@link Repositorio} central, que comparten todas las pantallas.</p>
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran

@@ -25,7 +25,7 @@ import java.util.Objects;
  * ({@code A > a B} y {@code A > b}), que es la segunda forma de disyunción
  * que permite el enunciado.</p>
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran

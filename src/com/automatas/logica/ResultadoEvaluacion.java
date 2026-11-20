@@ -14,7 +14,7 @@ import java.util.List;
  *   <li>Gramática: {@code Expansión Gramática: A>0B>00B>001A>0011A>0011(epsilon)>0011}</li>
  * </ul>
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran

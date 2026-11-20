@@ -28,7 +28,7 @@ import javax.swing.border.TitledBorder;
  * del enunciado las hace el modelo ({@link AFD}) y los analizadores de
  * transiciones; este panel solo recoge los datos y muestra los mensajes.</p>
  *
- * @author Jonatan Abdiel Alvararado Villavicencio
+ * @author Jonatan Abdiel Alvarado Villavicencio
  * @carné 0910-22-8487
  * @curso Autómatas y Lenguajes Formales — VI Ciclo — Sección 3
  * @catedrático Alan Gonzalo Ucelo Moran
